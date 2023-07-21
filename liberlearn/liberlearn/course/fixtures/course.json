@@ -1,0 +1,54 @@
+[
+{
+  "model": "course.subject",
+  "pk": 1,
+  "fields": {
+    "title": "Mathematics",
+    "slug": "mathematics"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 2,
+  "fields": {
+    "title": "Literatue",
+    "slug": "literatue"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 3,
+  "fields": {
+    "title": "Computer Science",
+    "slug": "computer-science"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 4,
+  "fields": {
+    "title": "Physics",
+    "slug": "physics"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 5,
+  "fields": {
+    "title": "History",
+    "slug": "history"
+  }
+},
+{
+  "model": "course.course",
+  "pk": 1,
+  "fields": {
+    "mentor": 2,
+    "subject": 3,
+    "title": "Introduction to Programming",
+    "slug": "introduction-to-programming",
+    "overview": "A simple introduction to Computer Programming",
+    "created_at": "2023-07-19T14:07:33.461Z"
+  }
+}
+]
