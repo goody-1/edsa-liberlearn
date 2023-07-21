@@ -70,8 +70,19 @@ class CourseCreateSerializer(HyperlinkedModelSerializer):
         fields = ("id", "title", "overview", "slug", "created_at", "subject", "mentor")
 
 
-class ModuleSerializer(HyperlinkedModelSerializer):
+class ModuleListSerializer(HyperlinkedModelSerializer):
     course = CourseListSerializer()
+
+    class Meta:
+        model = Module
+        fields = "__all__"
+        extra_kwargs = {"url": {"view_name": "module-detail", "lookup_field": "pk"}}
+
+
+class ModuleCreateSerializer(HyperlinkedModelSerializer):
+    course = PrimaryKeyRelatedField(
+        queryset=Course.objects.all(),
+    )
 
     class Meta:
         model = Module
