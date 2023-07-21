@@ -1,6 +1,6 @@
 from django.shortcuts import get_object_or_404
 from drf_spectacular.utils import extend_schema
-from rest_framework import status, viewsets
+from rest_framework import viewsets
 from rest_framework.permissions import SAFE_METHODS
 from rest_framework.response import Response
 
@@ -16,59 +16,105 @@ from .serializers import (
 
 class SubjectView(viewsets.ModelViewSet):
     """
-    A simple viewset for viewing all subjects
+    The Subject viewset, perform CRUD operations based on privileges
     """
 
     queryset = Subject.objects.all()
     serializer_class = SubjectSerializer
     permission_classes = (IsAdminOrAuthenticatedReadOnly,)
-    http_method_names = ["get", "post", "patch"]
+    http_method_names = ["get", "post", "patch", "delete"]
     lookup_field = "pk"
 
     def get_serializer_context(self):
         return {"request": self.request}
 
-    @extend_schema(responses=serializer_class)
+    @extend_schema(responses=serializer_class(many=True))
     def list(self, request):
-        """List of all subjects"""
+        """
+        Return a list of all subjects.
 
-        serializer = self.serializer_class(
-            self.queryset, many=True, context={"request": request}
-        )
-        return Response(serializer.data)
+        Returns:
+            Response: List of subjects.
+        """
+        return super().list(request)
 
     @extend_schema(responses=serializer_class)
     def retrieve(self, request, pk=None):
-        """Specific subject"""
-        subject = get_object_or_404(self.queryset, pk=pk)
-        serializer = self.serializer_class(subject, context={"request": request})
-        return Response(serializer.data)
+        """
+        Return a specific subject.
+
+        Parameters:
+            id (int): The primary key of the subject.
+
+        Returns:
+            Response: Serialized subject data.
+        """
+        return super().retrieve(request, pk)
+
+    @extend_schema(responses=serializer_class)
+    def create(self, request, *args, **kwargs):
+        """
+        Create a new subject.
+
+        Parameters:
+            request (Request): The HTTP request.
+
+        Returns:
+            Response: Serialized subject data.
+        """
+        return super().create(request, *args, **kwargs)
 
     @extend_schema(responses=serializer_class)
     def update(self, request, pk=None, *args, **kwargs):
-        """Update specific subject"""
-        # user = request.user
-        instance = get_object_or_404(self.queryset, pk=pk)
-        serializer = self.serializer_class(
-            instance=instance,
-            data=request.data,
-            partial=True,
-            context={"request": request},
-        )
-        if serializer.is_valid():
-            serializer.save()
-            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
-        return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        """
+        Update an existing subject.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the subject.
+
+        Returns:
+            Response: Serialized subject data.
+        """
+        return super().update(request, pk, *args, **kwargs)
+
+    @extend_schema(responses=serializer_class)
+    def partial_update(self, request, pk=None, *args, **kwargs):
+        """
+        Partially update an existing subject.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the subject.
+
+        Returns:
+            Response: Serialized subject data.
+        """
+        return super().partial_update(request, pk, *args, **kwargs)
+
+    @extend_schema(responses={204: None})
+    def destroy(self, request, pk=None, *args, **kwargs):
+        """
+        Delete an existing subject.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the subject.
+
+        Returns:
+            Response: Success message or Not found error.
+        """
+        return super().destroy(request, pk, *args, **kwargs)
 
 
 class CourseView(viewsets.ModelViewSet):
     """
-    A simple viewset for viewing all Courses
+    The Course viewset, perform CRUD operations based on your privileges
     """
 
     queryset = Course.objects.all()
     permission_classes = (IsAdminOrAuthenticatedReadOnly,)
-    http_method_names = ["get", "post", "patch"]
+    http_method_names = ["get", "post", "patch", "delete"]
     lookup_field = "pk"
 
     def get_serializer_class(self):
@@ -79,28 +125,83 @@ class CourseView(viewsets.ModelViewSet):
     def get_serializer_context(self):
         return {"request": self.request}
 
-    @extend_schema(responses=CourseListSerializer)
+    @extend_schema(responses=CourseListSerializer(many=True))
     def list(self, request):
-        """List of all courses"""
+        """
+        Return a list of all courses.
 
-        serializer = CourseListSerializer(
-            self.queryset, many=True, context={"request": request}
-        )
-        return Response(serializer.data)
+        Returns:
+            Response: List of courses.
+        """
+        return super().list(request)
 
     @extend_schema(responses=CourseListSerializer)
     def retrieve(self, request, pk=None):
-        """Specific course"""
+        """
+        Return a specific course.
 
-        course = get_object_or_404(self.queryset, pk=pk)
-        serializer = CourseListSerializer(course, context={"request": request})
-        return Response(serializer.data)
+        Parameters:
+            id (int): The primary key of the course.
 
-    # @extend_schema(responses=CourseSerializer)
-    # def partial_update(self, request, pk=None):
-    #     course = get_object_or_404(self.queryset, pk=pk)
-    #     serializer = CourseSerializer(course)
-    #     return Response(serializer.data)
+        Returns:
+            Response: Serialized course data.
+        """
+        return super().retrieve(request, pk)
+
+    @extend_schema(responses=CourseCreateSerializer)
+    def create(self, request, *args, **kwargs):
+        """
+        Create a new course.
+
+        Parameters:
+            request (Request): The HTTP request.
+
+        Returns:
+            Response: Serialized course data.
+        """
+        return super().create(request, *args, **kwargs)
+
+    @extend_schema(responses=CourseCreateSerializer)
+    def update(self, request, pk=None, *args, **kwargs):
+        """
+        Update an existing course.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the course.
+
+        Returns:
+            Response: Serialized course data.
+        """
+        return super().update(request, pk, *args, **kwargs)
+
+    @extend_schema(responses=CourseCreateSerializer)
+    def partial_update(self, request, pk=None, *args, **kwargs):
+        """
+        Partially update an existing course.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the course.
+
+        Returns:
+            Response: Serialized course data.
+        """
+        return super().partial_update(request, pk, *args, **kwargs)
+
+    @extend_schema(responses={204: None})
+    def destroy(self, request, pk=None, *args, **kwargs):
+        """
+        Delete an existing course.
+
+        Parameters:
+            request (Request): The HTTP request.
+            id (int): The primary key of the course.
+
+        Returns:
+            Response: Success message or Not found error.
+        """
+        return super().destroy(request, pk, *args, **kwargs)
 
 
 class ModuleView(viewsets.ModelViewSet):
