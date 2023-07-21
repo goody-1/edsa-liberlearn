@@ -2,7 +2,6 @@ from rest_framework import exceptions
 from rest_framework.serializers import (
     HyperlinkedModelSerializer,
     PrimaryKeyRelatedField,
-    SerializerMethodField,
 )
 
 from liberlearn.accounts.models import User
@@ -13,7 +12,7 @@ from .models import Course, Module, Subject
 class SubjectSerializer(HyperlinkedModelSerializer):
     class Meta:
         model = Subject
-        fields = ("id", "title", "slug")
+        fields = ("id", "url", "title", "slug")
         extra_kwargs = {"url": {"view_name": "subject-detail", "lookup_field": "pk"}}
 
     def validate(self, data):
@@ -37,25 +36,42 @@ title in the database"
         return instance
 
 
-class CourseSerializer(HyperlinkedModelSerializer):
+class CourseListSerializer(HyperlinkedModelSerializer):
     mentor = PrimaryKeyRelatedField(
         queryset=User.objects.all(),
     )
-    subject = SerializerMethodField()
+    subject = SubjectSerializer()
 
-    def get_subject(self, course):
-        # Use the SubjectSerializer to represent the subject in the serialized output
-        serializer = SubjectSerializer(course.subject)
-        return serializer.data
+    class Meta:
+        model = Course
+        fields = (
+            "id",
+            "url",
+            "title",
+            "overview",
+            "slug",
+            "created_at",
+            "subject",
+            "mentor",
+        )
+        extra_kwargs = {"url": {"view_name": "course-detail", "lookup_field": "pk"}}
+
+
+class CourseCreateSerializer(HyperlinkedModelSerializer):
+    mentor = PrimaryKeyRelatedField(
+        queryset=User.objects.all(),
+    )
+    subject = PrimaryKeyRelatedField(
+        queryset=Subject.objects.all(),
+    )
 
     class Meta:
         model = Course
         fields = ("id", "title", "overview", "slug", "created_at", "subject", "mentor")
-        extra_kwargs = {"url": {"view_name": "course-detail", "lookup_field": "pk"}}
 
 
 class ModuleSerializer(HyperlinkedModelSerializer):
-    course = CourseSerializer()
+    course = CourseListSerializer()
 
     class Meta:
         model = Module
