@@ -1,0 +1,106 @@
+{% extends "base.html" %}
+{% load course %}
+
+{% block title %}
+  Lesson {{ lesson.order|add:1 }}: {{ lesson.title }}
+{% endblock %}
+
+{% block content %}
+  {% with course=lesson.course %}
+    <h1>Course "{{ course.title }}"</h1>
+    <div class="contents">
+      <h3>Lessons</h3>
+      <ul id="lessons">
+        {% for l in course.lessons.all %}
+          <li data-id="{{ l.id }}" {% if l == lesson %}
+           class="selected"{% endif %}>
+            <a href="{% url "lesson_content_list" l.id %}">
+              <span>
+                Lesson <span class="order">{{ l.order|add:1 }}</span>
+              </span>
+              <br>
+              {{ l.title }}
+            </a>
+          </li>
+        {% empty %}
+          <li>No lessons yet.</li>
+        {% endfor %}
+      </ul>
+      <p><a href="{% url "course_lesson_update" course.id %}">
+      Edit Lessons</a></p>
+    </div>
+    <div class="lesson">
+      <h2>Lesson {{ lesson.order|add:1 }}: {{ lesson.title }}</h2>
+      <h3>Lesson contents:</h3>
+
+      <div id="lesson-contents">
+        {% for content in lesson.contents.all %}
+          <div data-id="{{ content.id }}">
+            {% with item=content.item %}
+              <p>{{ item }} ({{ item|model_name }})</p>
+              <a href="{% url "lesson_content_update" lesson.id item|model_name item.id %}">
+                Edit
+              </a>
+              <form action="{% url "lesson_content_delete" content.id %}" method="post">
+                <input type="submit" value="Delete">
+                {% csrf_token %}
+              </form>
+            {% endwith %}
+          </div>
+        {% empty %}
+          <p>This lesson has no contents yet.</p>
+        {% endfor %}
+      </div>
+      <h3>Add new content:</h3>
+      <ul class="content-types">
+        <li><a href="{% url "lesson_content_create" lesson.id "text" %}">
+        Text</a></li>
+        <li><a href="{% url "lesson_content_create" lesson.id "image" %}">
+        Image</a></li>
+        <li><a href="{% url "lesson_content_create" lesson.id "video" %}">
+        Video</a></li>
+        <li><a href="{% url "lesson_content_create" lesson.id "file" %}">
+        File</a></li>
+      </ul>
+    </div>
+  {% endwith %}
+{% endblock %}
+
+{% block domready %}
+  $('#lessons').sortable({
+      stop: function(event, ui) {
+          lessons_order = {};
+          $('#lessons').children().each(function(){
+              // update the order field
+              $(this).find('.order').text($(this).index() + 1);
+              // associate the lesson's id with its order
+              lessons_order[$(this).data('id')] = $(this).index();
+          });
+          $.ajax({
+              type: 'POST',
+              url: '{% url "lesson_order" %}',
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              data: JSON.stringify(lessons_order)
+          });
+      }
+  });
+
+  $('#lesson-contents').sortable({
+      stop: function(event, ui) {
+          contents_order = {};
+          $('#lesson-contents').children().each(function(){
+              // associate the lesson's id with its order
+              contents_order[$(this).data('id')] = $(this).index();
+          });
+
+          $.ajax({
+              type: 'POST',
+              url: '{% url "content_order" %}',
+              contentType: 'application/json; charset=utf-8',
+              dataType: 'json',
+              data: JSON.stringify(contents_order),
+          });
+      }
+  });
+{% endblock %}

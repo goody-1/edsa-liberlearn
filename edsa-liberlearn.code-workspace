@@ -1,0 +1,36 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.languageServer": "Pylance",
+		"files.autoSave": "onFocusChange",
+		"python.formatting.provider": "black",
+		"python.formatting.blackArgs": [
+			"--line-length",
+			"88",
+		],
+		"python.linting.enabled": true,
+		"python.linting.pycodestyleEnabled": false,
+		"python.linting.lintOnSave": true,
+		"python.linting.flake8Enabled": true,
+		"python.linting.flake8Args": [
+			"--max-line-length",
+			"88",
+		],
+		"[python]": {
+			"editor.codeActionsOnSave": {
+				"source.organizeImports": true,
+			},
+			"diffEditor.ignoreTrimWhitespace": false,
+			"editor.formatOnType": true,
+			"editor.wordBasedSuggestions": false
+		},
+		"[html]": {
+			"editor.suggest.insertMode": "replace",
+			"editor.defaultFormatter": "TabNine.tabnine-vscode"
+		}
+	}
+}

@@ -1,6 +1,7 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
+from django.template.loader import render_to_string
 
 from liberlearn.accounts.models import User
 
@@ -31,6 +32,9 @@ class Course(models.Model):
         on_delete=models.SET_DEFAULT,
         default=DEFAULT_MENTOR_ID,
     )
+    students = models.ManyToManyField(
+        User, related_name="courses_joined", blank=True
+    )
     subject = models.ForeignKey(
         Subject, related_name="courses", on_delete=models.CASCADE
     )
@@ -46,10 +50,12 @@ class Course(models.Model):
         return self.title
 
 
-class Module(models.Model):
+class Lesson(models.Model):
     """Contains teaching content"""
 
-    course = models.ForeignKey(Course, related_name="modules", on_delete=models.CASCADE)
+    course = models.ForeignKey(
+        Course, related_name="lessons", on_delete=models.CASCADE
+    )
     title = models.CharField(max_length=200)
     description = models.TextField(blank=True)
     order = OrderField(blank=True, for_fields=["course"])
@@ -62,20 +68,19 @@ class Module(models.Model):
 
 
 class Content(models.Model):
-    module = models.ForeignKey(
-        Module, related_name="contents", on_delete=models.CASCADE
+    lesson = models.ForeignKey(
+        Lesson, related_name="contents", on_delete=models.CASCADE
     )
     content_type = models.ForeignKey(
         ContentType,
         on_delete=models.CASCADE,
         limit_choices_to={
             "model_in": ("text", "video", "image", "file"),
-            "is_staff": True,
         },
     )
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey("content_type", "object_id")
-    order = OrderField(blank=True, for_fields=["module"])
+    order = OrderField(blank=True, for_fields=["lesson"])
 
     def __str__(self):
         return self.name
@@ -101,6 +106,11 @@ class ItemBase(models.Model):
     def __str__(self):
         return self.title
 
+    def render(self):
+        return render_to_string(
+            f"course/content/{self._meta.model_name}.html", {"item": self}
+        )
+
 
 class Text(ItemBase):
     content = models.TextField()
@@ -116,19 +126,3 @@ class Image(ItemBase):
 
 class Video(ItemBase):
     url = models.URLField()
-
-
-class CareerPath(models.Model):
-    pass
-
-
-class Assessment(models.Model):
-    pass
-
-
-class Comment(models.Model):
-    pass
-
-
-class Review(models.Model):
-    pass

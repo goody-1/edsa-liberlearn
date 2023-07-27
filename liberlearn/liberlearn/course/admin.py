@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Course, Module, Subject
+from .models import Course, Lesson, Subject
 
 
 @admin.register(Subject)
@@ -9,8 +9,8 @@ class SubjectAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
 
 
-class ModuleInline(admin.StackedInline):
-    model = Module
+class LessonInline(admin.StackedInline):
+    model = Lesson
 
 
 @admin.register(Course)
@@ -19,7 +19,8 @@ class CourseAdmin(admin.ModelAdmin):
     list_filter = ["created_at", "subject"]
     search_fields = ["title", "overview"]
     prepopulated_fields = {"slug": ("title",)}
-    inlines = [ModuleInline]
+    inlines = [LessonInline]
 
 
-admin.site.register(Module)
+# admin.site.register(Lesson)
+# admin.site.register(Content)

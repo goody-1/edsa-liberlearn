@@ -21,7 +21,9 @@ class UserManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-    def create_user(self, email=None, username=None, password=None, **extra_fields):
+    def create_user(
+        self, email=None, username=None, password=None, **extra_fields
+    ):
         extra_fields.setdefault("is_superuser", False)
         extra_fields.setdefault("is_staff", False)
         return self._create_user(email, username, password, **extra_fields)
@@ -43,7 +45,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    email = models.EmailField(_("Email Address"), unique=True, blank=True, null=True)
+    email = models.EmailField(
+        _("Email Address"), unique=True, blank=True, null=True
+    )
     username = models.CharField(
         _("Username"), max_length=30, unique=True, blank=True, null=True
     )
@@ -53,12 +57,17 @@ class User(AbstractBaseUser, PermissionsMixin):
         ("facility", _("Facility")),
     )
 
-    role = models.CharField(_("Role"), max_length=10, choices=ROLE_CHOICES, blank=True)
+    role = models.CharField(
+        _("Role"), max_length=10, choices=ROLE_CHOICES, blank=True
+    )
     first_name = models.CharField(_("First Name"), max_length=30, blank=True)
     last_name = models.CharField(_("Last Name"), max_length=30, blank=True)
     is_active = models.BooleanField(_("Active"), default=True)
     is_staff = models.BooleanField(_("Staff"), default=False)
     date_joined = models.DateTimeField(_("Date Joined"), default=timezone.now)
+
+    def get_full_name(self):
+        return f"{self.first_name} {self.last_name}".strip()
 
     # Computed properties
     @property
@@ -91,7 +100,10 @@ class User(AbstractBaseUser, PermissionsMixin):
 
 class Student(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, primary_key=True, related_name="student"
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name="student",
     )
     first_name = models.CharField(max_length=100)
     last_name = models.CharField(max_length=100)
@@ -102,7 +114,9 @@ class Student(models.Model):
         return self.user
 
     def save(self, *args, **kwargs):
-        if not (self.first_name and self.last_name and self.batch and self.roll_no):
+        if not (
+            self.first_name and self.last_name and self.batch and self.roll_no
+        ):
             raise ValidationError("All fields in Student model must be filled")
         super().save(*args, **kwargs)
 
@@ -134,7 +148,10 @@ class Mentor(models.Model):
 
 class Facility(models.Model):
     user = models.OneToOneField(
-        User, on_delete=models.CASCADE, primary_key=True, related_name="facility"
+        User,
+        on_delete=models.CASCADE,
+        primary_key=True,
+        related_name="facility",
     )
     admin_officer_first_name = models.CharField(max_length=100)
     admin_officer_last_name = models.CharField(max_length=100)
@@ -155,7 +172,9 @@ class Facility(models.Model):
             and self.facility_name
             and self.facility_full_address
         ):
-            raise ValidationError("All fields in Facility model must be filled")
+            raise ValidationError(
+                "All fields in Facility model must be filled"
+            )
         super().save(*args, **kwargs)
 
     class Meta:
