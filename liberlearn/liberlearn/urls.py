@@ -4,22 +4,15 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.urls import include, path
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView
-from rest_framework.routers import DefaultRouter
 
 from liberlearn.course import views
-
-router = DefaultRouter()
-router.register(r"subject", views.SubjectView)
-router.register(r"course", views.CourseView)
-router.register(r"lesson", views.LessonView)
-# router.register(r"content", views.ContentView)
 
 urlpatterns = [
     path("", views.CourseListView.as_view(), name="course_list"),
     path("accounts/login/", auth_views.LoginView.as_view(), name="login"),
     path("accounts/logout/", auth_views.LogoutView.as_view(), name="logout"),
     path("admin/", admin.site.urls),
-    path("api/", include(router.urls)),
+    path("api/", include("liberlearn.api.urls")),
     path("api/schema/", SpectacularAPIView.as_view(), name="schema"),
     path("api/schema/docs", SpectacularSwaggerView.as_view(url_name="schema")),
     path("course/", include("liberlearn.course.urls")),

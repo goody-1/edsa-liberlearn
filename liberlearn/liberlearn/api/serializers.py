@@ -1,13 +1,14 @@
 from rest_framework import exceptions
 from rest_framework.serializers import (
     HyperlinkedModelSerializer,
+    ModelSerializer,
     PrimaryKeyRelatedField,
-    SerializerMethodField,
+    RelatedField,
 )
 
 from liberlearn.accounts.models import User
 
-from .models import Content, Course, File, Image, Lesson, Subject, Text, Video
+from ..course.models import Content, Course, Lesson, Subject
 
 
 class SubjectSerializer(HyperlinkedModelSerializer):
@@ -83,67 +84,57 @@ class CourseCreateSerializer(HyperlinkedModelSerializer):
         )
 
 
-class LessonListSerializer(HyperlinkedModelSerializer):
-    course = CourseListSerializer()
-
-    class Meta:
-        model = Lesson
-        fields = "__all__"
-        extra_kwargs = {
-            "url": {"view_name": "lesson-detail", "lookup_field": "pk"}
-        }
+class ItemRelatedField(RelatedField):
+    def to_representation(self, value):
+        return value.render()
 
 
-class LessonCreateSerializer(HyperlinkedModelSerializer):
-    course = PrimaryKeyRelatedField(
-        queryset=Course.objects.all(),
-    )
-
-    class Meta:
-        model = Lesson
-        fields = "__all__"
-        extra_kwargs = {
-            "url": {"view_name": "lesson-detail", "lookup_field": "pk"}
-        }
-
-
-class TextSerializer(HyperlinkedModelSerializer):
-    class Meta:
-        model = Text
-        fields = "__all__"
-
-
-class FileSerializer(HyperlinkedModelSerializer):
-    class Meta:
-        model = File
-        fields = "__all__"
-
-
-class ImageSerializer(HyperlinkedModelSerializer):
-    class Meta:
-        model = Image
-        fields = "__all__"
-
-
-class VideoSerializer(HyperlinkedModelSerializer):
-    class Meta:
-        model = Video
-        fields = "__all__"
-
-
-class ContentSerializer(HyperlinkedModelSerializer):
-    item = SerializerMethodField()
-
-    def get_item(self, obj):
-        if isinstance(obj.item, Text):
-            return TextSerializer(obj.item).data
-        elif isinstance(obj.item, File):
-            return FileSerializer(obj.item).data
-        elif isinstance(obj.item, Image):
-            return ImageSerializer(obj.item).data
-        elif isinstance(obj.item, Video):
-            return VideoSerializer(obj.item).data
+class ContentSerializer(ModelSerializer):
+    item = ItemRelatedField(read_only=True)
 
     class Meta:
         model = Content
-        fields = "__all__"
+        fields = ["order", "item"]
+
+
+class LessonWithContentsSerializer(ModelSerializer):
+    contents = ContentSerializer(many=True)
+
+    class Meta:
+        model = Lesson
+        fields = ["order", "title", "description", "contents"]
+
+
+class CourseWithContentsSerializer(ModelSerializer):
+    lessons = LessonWithContentsSerializer(many=True)
+
+    class Meta:
+        model = Course
+        fields = [
+            "id",
+            "subject",
+            "title",
+            "slug",
+            "overview",
+            "created",
+            "owner",
+            "lessons",
+        ]
+
+
+# class ContentSerializer(HyperlinkedModelSerializer):
+#     item = SerializerMethodField()
+
+#     def get_item(self, obj):
+#         if isinstance(obj.item, Text):
+#             return TextSerializer(obj.item).data
+#         elif isinstance(obj.item, File):
+#             return FileSerializer(obj.item).data
+#         elif isinstance(obj.item, Image):
+#             return ImageSerializer(obj.item).data
+#         elif isinstance(obj.item, Video):
+#             return VideoSerializer(obj.item).data
+
+#     class Meta:
+#         model = Content
+#         fields = "__all__"
