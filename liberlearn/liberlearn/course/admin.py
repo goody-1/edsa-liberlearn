@@ -1,6 +1,7 @@
 from django.contrib import admin
+from nested_inline.admin import NestedModelAdmin, NestedStackedInline
 
-from .models import Course, Lesson, Subject
+from .models import Assessment, Choice, Course, Lesson, Question, Subject
 
 
 @admin.register(Subject)
@@ -13,6 +14,10 @@ class LessonInline(admin.StackedInline):
     model = Lesson
 
 
+# class QuestionInLine(admin.StackedInline):
+#     model = Question
+
+
 @admin.register(Course)
 class CourseAdmin(admin.ModelAdmin):
     list_display = ["id", "title", "subject", "created_at"]
@@ -22,5 +27,27 @@ class CourseAdmin(admin.ModelAdmin):
     inlines = [LessonInline]
 
 
-# admin.site.register(Lesson)
+class ChoiceInline(NestedStackedInline):
+    model = Choice
+    fk_name = "question"
+    min_num = 4
+    max_num = 4
+
+
+class QuestionInline(NestedStackedInline):
+    model = Question
+    extra = 3
+    fk_name = "assessment"
+    inlines = [ChoiceInline]
+
+
+@admin.register(Assessment)
+class AssessmentAdmin(NestedModelAdmin):
+    list_display = ["id", "title", "course", "created_at"]
+    list_filter = ["created_at", "course"]
+    search_fields = ["title", "description"]
+    inlines = [QuestionInline]
+
+
+# admin.site.register(Question, QuestionInline)
 # admin.site.register(Content)
