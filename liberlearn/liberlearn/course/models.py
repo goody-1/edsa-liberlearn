@@ -83,7 +83,7 @@ class Content(models.Model):
     order = OrderField(blank=True, for_fields=["lesson"])
 
     def __str__(self):
-        return self.name
+        return f"{self.content_type}"
 
     class Meta:
         ordering = ["order"]
