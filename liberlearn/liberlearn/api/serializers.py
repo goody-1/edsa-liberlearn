@@ -4,6 +4,7 @@ from rest_framework.serializers import (
     ModelSerializer,
     PrimaryKeyRelatedField,
     RelatedField,
+    SerializerMethodField,
 )
 
 from liberlearn.accounts.models import User
@@ -12,9 +13,11 @@ from ..course.models import Content, Course, Lesson, Subject
 
 
 class SubjectSerializer(HyperlinkedModelSerializer):
+    courses = SerializerMethodField()
+
     class Meta:
         model = Subject
-        fields = ("id", "url", "title", "slug")
+        fields = ("id", "url", "title", "slug", "courses")
         extra_kwargs = {
             "url": {"view_name": "subject-detail", "lookup_field": "pk"}
         }
@@ -39,12 +42,24 @@ subject title in the database"
         instance.save()
         return instance
 
+    def get_courses(self, subject):
+        courses = Course.objects.filter(subject=subject)
+        serializer = CourseListSerializer(
+            courses, many=True, context=self.context
+        )
+        return serializer.data
+
 
 class CourseListSerializer(HyperlinkedModelSerializer):
     mentor = PrimaryKeyRelatedField(
         queryset=User.objects.all(),
     )
-    subject = SubjectSerializer()
+
+    lessons = SerializerMethodField()
+    number_of_students = SerializerMethodField()
+
+    # subject = SubjectSerializer() # This avoids the
+    # `RecursionError: maximum recursion depth exceeded` error
 
     class Meta:
         model = Course
@@ -57,10 +72,23 @@ class CourseListSerializer(HyperlinkedModelSerializer):
             "created_at",
             "subject",
             "mentor",
+            "number_of_students",
+            "lessons",
         )
         extra_kwargs = {
             "url": {"view_name": "course-detail", "lookup_field": "pk"}
         }
+
+    def get_lessons(self, course):
+        lessons = Lesson.objects.filter(course=course)
+        serializer = LessonWithContentsSerializer(
+            lessons, many=True, context=self.context
+        )
+        return serializer.data
+
+    def get_number_of_students(self, course):
+        number_of_students = len(course.students.all())
+        return number_of_students
 
 
 class CourseCreateSerializer(HyperlinkedModelSerializer):
