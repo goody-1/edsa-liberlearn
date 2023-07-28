@@ -14,7 +14,7 @@ from rest_framework.views import APIView
 
 from ..course.models import Assessment, Course, Question, Subject
 from .permissions import IsAdminOrReadOnly, IsEnrolled
-from .serializers import (  # LessonCreateSerializer,; LessonListSerializer,; ContentSerializer,
+from .serializers import (
     AssessmentSerializer,
     CourseCreateSerializer,
     CourseListSerializer,
