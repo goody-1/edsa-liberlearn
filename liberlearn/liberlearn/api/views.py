@@ -1,5 +1,6 @@
 from django.shortcuts import get_object_or_404
-from drf_spectacular.utils import extend_schema
+
+# from drf_spectacular.utils import extend_schema
 from rest_framework import viewsets
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import action
@@ -30,84 +31,6 @@ class SubjectView(viewsets.ModelViewSet):
 
     def get_serializer_context(self):
         return {"request": self.request}
-
-    @extend_schema(responses=serializer_class(many=True))
-    def list(self, request):
-        """
-        Return a list of all subjects.
-
-        Returns:
-            Response: List of subjects.
-        """
-        return super().list(request)
-
-    @extend_schema(responses=serializer_class)
-    def retrieve(self, request, pk=None):
-        """
-        Return a specific subject.
-
-        Parameters:
-            id (int): The primary key of the subject.
-
-        Returns:
-            Response: Serialized subject data.
-        """
-        return super().retrieve(request, pk)
-
-    @extend_schema(responses=serializer_class)
-    def create(self, request, *args, **kwargs):
-        """
-        Create a new subject.
-
-        Parameters:
-            request (Request): The HTTP request.
-
-        Returns:
-            Response: Serialized subject data.
-        """
-        return super().create(request, *args, **kwargs)
-
-    @extend_schema(responses=serializer_class)
-    def update(self, request, pk=None, *args, **kwargs):
-        """
-        Update an existing subject.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the subject.
-
-        Returns:
-            Response: Serialized subject data.
-        """
-        return super().update(request, pk, *args, **kwargs)
-
-    @extend_schema(responses=serializer_class)
-    def partial_update(self, request, pk=None, *args, **kwargs):
-        """
-        Partially update an existing subject.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the subject.
-
-        Returns:
-            Response: Serialized subject data.
-        """
-        return super().partial_update(request, pk, *args, **kwargs)
-
-    @extend_schema(responses={204: None})
-    def destroy(self, request, pk=None, *args, **kwargs):
-        """
-        Delete an existing subject.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the subject.
-
-        Returns:
-            Response: Success message or Not found error.
-        """
-        return super().destroy(request, pk, *args, **kwargs)
 
 
 class CourseView(viewsets.ModelViewSet):
@@ -144,88 +67,10 @@ class CourseView(viewsets.ModelViewSet):
         methods=["get"],
         serializer_class=CourseWithContentsSerializer,
         authentication_classes=[BasicAuthentication],
-        permission_classes=[IsAuthenticated, IsEnrolled],
+        permission_classes=[IsAuthenticated],  # IsEnrolled
     )
     def contents(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
-
-    @extend_schema(responses=CourseListSerializer(many=True))
-    def list(self, request):
-        """
-        Return a list of all courses.
-
-        Returns:
-            Response: List of courses.
-        """
-        return super().list(request)
-
-    @extend_schema(responses=CourseListSerializer)
-    def retrieve(self, request, pk=None):
-        """
-        Return a specific course.
-
-        Parameters:
-            id (int): The primary key of the course.
-
-        Returns:
-            Response: Serialized course data.
-        """
-        return super().retrieve(request, pk)
-
-    @extend_schema(responses=CourseCreateSerializer)
-    def create(self, request, *args, **kwargs):
-        """
-        Create a new course.
-
-        Parameters:
-            request (Request): The HTTP request.
-
-        Returns:
-            Response: Serialized course data.
-        """
-        return super().create(request, *args, **kwargs)
-
-    @extend_schema(responses=CourseCreateSerializer)
-    def update(self, request, pk=None, *args, **kwargs):
-        """
-        Update an existing course.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the course.
-
-        Returns:
-            Response: Serialized course data.
-        """
-        return super().update(request, pk, *args, **kwargs)
-
-    @extend_schema(responses=CourseCreateSerializer)
-    def partial_update(self, request, pk=None, *args, **kwargs):
-        """
-        Partially update an existing course.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the course.
-
-        Returns:
-            Response: Serialized course data.
-        """
-        return super().partial_update(request, pk, *args, **kwargs)
-
-    @extend_schema(responses={204: None})
-    def destroy(self, request, pk=None, *args, **kwargs):
-        """
-        Delete an existing course.
-
-        Parameters:
-            request (Request): The HTTP request.
-            id (int): The primary key of the course.
-
-        Returns:
-            Response: Success message or Not found error.
-        """
-        return super().destroy(request, pk, *args, **kwargs)
 
 
 class CourseEnrollView(APIView):
@@ -255,81 +100,3 @@ class CourseEnrollView(APIView):
 
 #     def get_serializer_context(self):
 #         return {"request": self.request}
-
-#     @extend_schema(responses=LessonListSerializer)
-#     def list(self, request):
-#         """
-#         Return a list of all lessons.
-
-#         Returns:
-#             Response: List of lessons.
-#         """
-#         return super().list(request)
-
-#     @extend_schema(responses=LessonListSerializer)
-#     def retrieve(self, request, pk=None):
-#         """
-#         Return a specific lesson.
-
-#         Parameters:
-#             id (int): The primary key of the lesson.
-
-#         Returns:
-#             Response: Serialized lesson data.
-#         """
-#         return super().retrieve(request, pk)
-
-#     @extend_schema(responses=LessonCreateSerializer)
-#     def create(self, request, *args, **kwargs):
-#         """
-#         Create a new lesson.
-
-#         Parameters:
-#             request (Request): The HTTP request.
-
-#         Returns:
-#             Response: Serialized lesson data.
-#         """
-#         return super().create(request, *args, **kwargs)
-
-#     @extend_schema(responses=LessonCreateSerializer)
-#     def update(self, request, pk=None, *args, **kwargs):
-#         """
-#         Update an existing lesson.
-
-#         Parameters:
-#             request (Request): The HTTP request.
-#             id (int): The primary key of the lesson.
-
-#         Returns:
-#             Response: Serialized lesson data.
-#         """
-#         return super().update(request, pk, *args, **kwargs)
-
-#     @extend_schema(responses=LessonCreateSerializer)
-#     def partial_update(self, request, pk=None, *args, **kwargs):
-#         """
-#         Partially update an existing lesson.
-
-#         Parameters:
-#             request (Request): The HTTP request.
-#             id (int): The primary key of the lesson.
-
-#         Returns:
-#             Response: Serialized lesson data.
-#         """
-#         return super().partial_update(request, pk, *args, **kwargs)
-
-#     @extend_schema(responses={204: None})
-#     def destroy(self, request, pk=None, *args, **kwargs):
-#         """
-#         Delete an existing lesson.
-
-#         Parameters:
-#             request (Request): The HTTP request.
-#             id (int): The primary key of the lesson.
-
-#         Returns:
-#             Response: Success message or Not found error.
-#         """
-#         return super().destroy(request, pk, *args, **kwargs)
