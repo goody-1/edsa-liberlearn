@@ -10,7 +10,7 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
-    "web-production-d658.up.railway.app/",
+    "web-production-d658.up.railway.app",
     "127.0.0.1",
     "localhost",
 ]
