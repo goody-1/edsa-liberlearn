@@ -126,3 +126,41 @@ class Image(ItemBase):
 
 class Video(ItemBase):
     url = models.URLField()
+
+
+class Assessment(models.Model):
+    course = models.ForeignKey(
+        Course, related_name="assessments", on_delete=models.CASCADE
+    )
+    title = models.CharField(max_length=200, editable=False)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.title
+
+    def save(self, *args, **kwargs):
+        if not self.title:
+            self.title = f"{self.course.title} Assessment"
+        super().save(*args, **kwargs)
+
+
+class Question(models.Model):
+    assessment = models.ForeignKey(
+        Assessment, related_name="questions", on_delete=models.CASCADE
+    )
+    text = models.TextField()
+
+    def __str__(self):
+        return self.text
+
+
+class Choice(models.Model):
+    question = models.ForeignKey(
+        Question, related_name="choices", on_delete=models.CASCADE
+    )
+    text = models.CharField(max_length=200)
+    is_correct = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.text

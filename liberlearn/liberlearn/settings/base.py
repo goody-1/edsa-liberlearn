@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "drf_spectacular",
     "embed_video",
+    "nested_inline",
     # "mptt",
     # Internal Apps
     "liberlearn.course",

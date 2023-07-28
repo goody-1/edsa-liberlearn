@@ -4,16 +4,22 @@ from django.shortcuts import get_object_or_404
 from rest_framework import viewsets
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.decorators import action
-from rest_framework.permissions import SAFE_METHODS, IsAuthenticated
+from rest_framework.permissions import (
+    SAFE_METHODS,
+    IsAuthenticated,
+    IsAuthenticatedOrReadOnly,
+)
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from ..course.models import Course, Subject
+from ..course.models import Assessment, Course, Question, Subject
 from .permissions import IsAdminOrReadOnly, IsEnrolled
 from .serializers import (  # LessonCreateSerializer,; LessonListSerializer,; ContentSerializer,
+    AssessmentSerializer,
     CourseCreateSerializer,
     CourseListSerializer,
     CourseWithContentsSerializer,
+    QuestionSerializer,
     SubjectSerializer,
 )
 
@@ -100,3 +106,25 @@ class CourseEnrollView(APIView):
 
 #     def get_serializer_context(self):
 #         return {"request": self.request}
+
+
+class AssessmentView(viewsets.ModelViewSet):
+    queryset = Assessment.objects.all()
+    serializer_class = AssessmentSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
+    http_method_names = ["get", "post", "patch", "delete"]
+    lookup_field = "pk"
+
+    def get_serializer_context(self):
+        return {"request": self.request}
+
+
+class QuestionView(viewsets.ModelViewSet):
+    queryset = Question.objects.all()
+    serializer_class = QuestionSerializer
+    permission_classes = (IsAdminOrReadOnly,)
+    http_method_names = ["get", "post", "patch", "delete"]
+    lookup_field = "pk"
+
+    def get_serializer_context(self):
+        return {"request": self.request}
