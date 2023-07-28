@@ -1,1 +1,1 @@
-web: python liberlearn/manage.py migrate && python liberlearn/manage.py collectstatic --no-input && cd liberlearn && gunicorn liberlearn.wsgi:application
+edsa-liberlearn: python liberlearn/manage.py migrate && python liberlearn/manage.py collectstatic --no-input && cd liberlearn && gunicorn liberlearn.wsgi:application

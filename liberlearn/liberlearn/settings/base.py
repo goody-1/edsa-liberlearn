@@ -10,11 +10,11 @@ load_dotenv()
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 ALLOWED_HOSTS = [
-    "web-production-c7e4.up.railway.app",
+    "edsa-liberlearn-production.up.railway.app/",
     "127.0.0.1",
     "localhost",
 ]
-CSRF_TRUSTED_ORIGINS = ["https://web-production-c7e4.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://edsa-liberlearn-production.up.railway.app/"]
 
 SECRET_KEY = os.environ.get("SECRET_KEY")
 
