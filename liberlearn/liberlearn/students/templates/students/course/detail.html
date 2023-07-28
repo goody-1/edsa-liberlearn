@@ -27,11 +27,11 @@
       {% endfor %}
     </ul>
   </div>
-  <div class="lesson">
+  <div class="lesson lesson-content">
     {% cache 600 lesson_contents lesson %}
       {% for content in lesson.contents.all %}
         {% with item=content.item %}
-          <h2>{{ item.title }}</h2>
+          <h3>{{ item.title }}</h3>
           {{ item.render }}
         {% endwith %}
       {% endfor %}
