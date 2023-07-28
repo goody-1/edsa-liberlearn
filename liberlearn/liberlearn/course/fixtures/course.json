@@ -3,29 +3,13 @@
   "model": "course.subject",
   "pk": 1,
   "fields": {
-    "title": "Mathematics",
-    "slug": "mathematics"
-  }
-},
-{
-  "model": "course.subject",
-  "pk": 2,
-  "fields": {
-    "title": "Literatue",
-    "slug": "literatue"
-  }
-},
-{
-  "model": "course.subject",
-  "pk": 3,
-  "fields": {
     "title": "Computer Science",
     "slug": "computer-science"
   }
 },
 {
   "model": "course.subject",
-  "pk": 4,
+  "pk": 2,
   "fields": {
     "title": "Physics",
     "slug": "physics"
@@ -33,7 +17,47 @@
 },
 {
   "model": "course.subject",
+  "pk": 3,
+  "fields": {
+    "title": "Chemistry",
+    "slug": "chemistry"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 4,
+  "fields": {
+    "title": "Emotional Intelligence",
+    "slug": "emotional-intelligence"
+  }
+},
+{
+  "model": "course.subject",
   "pk": 5,
+  "fields": {
+    "title": "English",
+    "slug": "english"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 6,
+  "fields": {
+    "title": "Mathematics",
+    "slug": "mathematics"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 7,
+  "fields": {
+    "title": "Biology",
+    "slug": "biology"
+  }
+},
+{
+  "model": "course.subject",
+  "pk": 8,
   "fields": {
     "title": "History",
     "slug": "history"
@@ -43,12 +67,965 @@
   "model": "course.course",
   "pk": 1,
   "fields": {
+    "mentor": 5,
+    "subject": 1,
+    "title": "History of Computers",
+    "slug": "history-of-computers",
+    "overview": "What are computers and what is their origin. Man has been advancing since man began but the greatest advancement of man is arguably the invention and development of computers.\r\nA good understanding of the history of computer can help the student to appreciate computing technology.",
+    "created_at": "2023-07-27T08:14:24.048Z",
+    "students": [
+      1,
+      4
+    ]
+  }
+},
+{
+  "model": "course.course",
+  "pk": 2,
+  "fields": {
+    "mentor": 5,
+    "subject": 1,
+    "title": "Computers: Hardware and Software",
+    "slug": "computers-hardware-and-software",
+    "overview": "This comprehensive course introduces students to the fundamental concepts of computer hardware and software. Participants will gain a deep understanding of the components that make up a computer system, how they interact, and the software that drives their functionalities. By the end of the course, students will be equipped with the knowledge to build, troubleshoot, and optimize computer systems, as well as work with various software applications effectively.",
+    "created_at": "2023-07-27T08:21:29.028Z",
+    "students": [
+      1
+    ]
+  }
+},
+{
+  "model": "course.course",
+  "pk": 3,
+  "fields": {
     "mentor": 2,
-    "subject": 3,
-    "title": "Introduction to Programming",
-    "slug": "introduction-to-programming",
-    "overview": "A simple introduction to Computer Programming",
-    "created_at": "2023-07-19T14:07:33.461Z"
+    "subject": 4,
+    "title": "Course Introduction",
+    "slug": "course-introduction",
+    "overview": "This course is designed to help participants develop their emotional intelligence, which is a crucial skill for personal and professional success. Emotional intelligence involves understanding and managing emotions, both in oneself and in others. Through a series of interactive lessons and practical exercises, students will learn to recognize emotions, improve emotional awareness, and build healthier relationships in various contexts.",
+    "created_at": "2023-07-27T08:31:29.431Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 5,
+  "fields": {
+    "mentor": 2,
+    "subject": 4,
+    "title": "Self-Management",
+    "slug": "self-management",
+    "overview": "Self Management is key to Quality Productivity",
+    "created_at": "2023-07-27T08:35:28.692Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 6,
+  "fields": {
+    "mentor": 2,
+    "subject": 4,
+    "title": "Social Awareness",
+    "slug": "social-awareness",
+    "overview": "Understanding People and Your Environment",
+    "created_at": "2023-07-27T08:39:17.854Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 7,
+  "fields": {
+    "mentor": 2,
+    "subject": 4,
+    "title": "Relationship Management",
+    "slug": "relationship-management",
+    "overview": "There are different kinds of relationship, most are important, understanding this is important to being emotionally intelligent.",
+    "created_at": "2023-07-27T08:41:32.178Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 8,
+  "fields": {
+    "mentor": 2,
+    "subject": 4,
+    "title": "Course Conclusion:",
+    "slug": "course-conclusion",
+    "overview": "Reflecting on personal growth and progress throughout the course.\r\nCreating an action plan for applying emotional intelligence in daily life.",
+    "created_at": "2023-07-27T08:42:02.364Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 9,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Physics Fundamentals",
+    "slug": "physics-fundamentals",
+    "overview": "This introductory course in physics provides a comprehensive understanding of the fundamental principles governing the natural world. Through a combination of theoretical concepts, practical experiments, and problem-solving exercises, students will explore the laws of motion, forces, energy, and other key topics in classical physics.",
+    "created_at": "2023-07-27T08:44:05.360Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 10,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Mechanics",
+    "slug": "mechanics",
+    "overview": "Understand mechanics",
+    "created_at": "2023-07-27T08:45:32.557Z",
+    "students": [
+      6
+    ]
+  }
+},
+{
+  "model": "course.course",
+  "pk": 11,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Thermodynamics",
+    "slug": "thermodynamics",
+    "overview": "Understanding the Dynamics of Heat",
+    "created_at": "2023-07-27T08:46:51.459Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 12,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Electricity and Magnetism",
+    "slug": "electricity-and-magnetism",
+    "overview": "A world of electrified by the magnetism science and laws",
+    "created_at": "2023-07-27T08:49:02.301Z",
+    "students": [
+      4
+    ]
+  }
+},
+{
+  "model": "course.course",
+  "pk": 13,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Waves and Optics",
+    "slug": "waves-and-optics",
+    "overview": "A World of Lights and Dimensions",
+    "created_at": "2023-07-27T08:50:59.644Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 14,
+  "fields": {
+    "mentor": 2,
+    "subject": 2,
+    "title": "Modern Physics",
+    "slug": "modern-physics",
+    "overview": "Physics Has a Major Stake in How The World Advances.",
+    "created_at": "2023-07-27T08:54:42.382Z",
+    "students": []
+  }
+},
+{
+  "model": "course.course",
+  "pk": 15,
+  "fields": {
+    "mentor": 2,
+    "subject": 1,
+    "title": "Test Course",
+    "slug": "test-course",
+    "overview": "Testing Serializer",
+    "created_at": "2023-07-28T12:29:29.749Z",
+    "students": []
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 1,
+  "fields": {
+    "course": 1,
+    "title": "Mechanical Computers:",
+    "description": "Early 1800s: Charles Babbage conceptualized and designed the \"Difference Engine\" and \"Analytical Engine,\" considered the first mechanical computers.\r\n\r\nLate 1800s: The first successful mechanical computer, \"Tabulating Machine,\" was developed by Herman Hollerith for census data processing.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 2,
+  "fields": {
+    "course": 1,
+    "title": "Vacuum Tube Computers",
+    "description": "1930s-1940s: Electronic computers using vacuum tubes were developed, such as the Atanasoff-Berry Computer (ABC) and the Colossus, which played crucial roles during World War II.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 3,
+  "fields": {
+    "course": 1,
+    "title": "Transistor Computers",
+    "description": "1947: The invention of the transistor at Bell Labs paved the way for smaller, faster, and more reliable computers.\r\n\r\nLate 1950s-1960s: The transistor-based computers started to replace vacuum tube machines, leading to advancements like IBM 7090 and UNIVAC LARC.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 4,
+  "fields": {
+    "course": 1,
+    "title": "Mainframes and Minicomputers",
+    "description": "1960s: Mainframes became the primary computing systems for large organizations and businesses.\r\n\r\nLate 1960s-1970s: Minicomputers, smaller and more affordable than mainframes, gained popularity for scientific and engineering tasks.",
+    "order": 3
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 5,
+  "fields": {
+    "course": 1,
+    "title": "Microprocessors and Personal Computers",
+    "description": "1971: The first microprocessor, Intel 4004, was introduced, revolutionizing computing by placing all essential components on a single chip.\r\n\r\nMid 1970s: The Altair 8800 and Apple I, the first personal computers, were released, leading to the personal computer revolution.",
+    "order": 4
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 6,
+  "fields": {
+    "course": 1,
+    "title": "Home Computers and Gaming Consoles",
+    "description": "Late 1970s-1980s: The rise of home computers like Commodore 64, Atari 2600, and NES (Nintendo Entertainment System) brought computing and gaming to households.",
+    "order": 5
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 7,
+  "fields": {
+    "course": 1,
+    "title": "Graphical User Interfaces (GUI) and Workstations",
+    "description": "1980s: GUI-based systems like Apple Macintosh and early versions of Windows made computers more user-friendly.\r\nWorkstations, powerful computers used for technical and scientific tasks, gained traction during this period.",
+    "order": 6
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 8,
+  "fields": {
+    "course": 1,
+    "title": "Networking and the Internet",
+    "description": "Late 1980s-1990s: The development of the internet and the World Wide Web transformed how people communicate, access information, and conduct business.",
+    "order": 7
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 9,
+  "fields": {
+    "course": 1,
+    "title": "Laptops and Mobile Devices",
+    "description": "Late 1980s-2000s: Portable computing devices, like laptops, PDAs (Personal Digital Assistants), and smartphones, became increasingly popular.",
+    "order": 8
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 10,
+  "fields": {
+    "course": 1,
+    "title": "Cloud Computing and Virtualization",
+    "description": "2000s: Cloud computing emerged, allowing users to access computing resources and services over the internet, and virtualization technology enabled more efficient use of hardware.",
+    "order": 9
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 11,
+  "fields": {
+    "course": 1,
+    "title": "Internet of Things (IoT) and Embedded Systems",
+    "description": "2010s: The proliferation of IoT devices, from smart home appliances to industrial sensors, expanded the network of interconnected devices.",
+    "order": 10
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 12,
+  "fields": {
+    "course": 1,
+    "title": "Artificial Intelligence and Quantum Computing",
+    "description": "Recent years: Advancements in AI and machine learning have driven automation and intelligence in various applications.\r\nQuantum computing holds the potential to revolutionize computation by exploiting quantum mechanics.\r\n\r\nThis brief history showcases the evolution of computers from mechanical devices to powerful machines that have become an integral part of our daily lives, shaping various fields and industries. As technology continues to progress, we can expect even more exciting developments in computing in the future.",
+    "order": 11
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 13,
+  "fields": {
+    "course": 2,
+    "title": "Introduction to Computers and Computing",
+    "description": "Overview of computer history and evolution\r\nUnderstanding the basic components of a computer system\r\nDifferentiating between hardware and software\r\nExploring the role of computers in various fields and industries",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 14,
+  "fields": {
+    "course": 2,
+    "title": "Computer Hardware Fundamentals",
+    "description": "CPU (Central Processing Unit) and its architecture\r\nMemory (RAM, ROM) and storage devices (HDD, SSD)\r\nMotherboard, expansion cards, and peripherals\r\nPower supply and cooling systems",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 15,
+  "fields": {
+    "course": 2,
+    "title": "Computer Software Fundamentals",
+    "description": "Differentiating between system software and application software\r\nOperating systems and their functions\r\nIntroduction to programming languages and their uses\r\nSoftware licensing and distribution models",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 16,
+  "fields": {
+    "course": 2,
+    "title": "Building and Configuring a Computer",
+    "description": "Step-by-step guide to assembling a computer system\r\nBIOS/UEFI settings and firmware updates\r\nInstalling and configuring an operating system\r\nDevice drivers and hardware compatibility",
+    "order": 3
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 17,
+  "fields": {
+    "course": 2,
+    "title": "Computer Networking Basics",
+    "description": "Understanding network topologies and protocols\r\nLAN, WAN, and the internet\r\nConfiguring network settings and troubleshooting common issues",
+    "order": 4
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 18,
+  "fields": {
+    "course": 2,
+    "title": "Software Installation and Management",
+    "description": "Installing and updating applications and drivers\r\nIntroduction to package managers and app stores\r\nManaging software licenses and updates",
+    "order": 5
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 19,
+  "fields": {
+    "course": 2,
+    "title": "System Maintenance and Troubleshooting",
+    "description": "Routine system maintenance tasks\r\nIdentifying and resolving common hardware and software issues\r\nBackup and recovery strategies",
+    "order": 6
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 20,
+  "fields": {
+    "course": 2,
+    "title": "Introduction to Programming Concepts",
+    "description": "Basic programming principles and logic\r\nWriting and executing simple programs\r\nIntroduction to debugging techniques",
+    "order": 7
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 21,
+  "fields": {
+    "course": 2,
+    "title": "Data Security and Privacy",
+    "description": "Understanding common cybersecurity threats\r\nImplementing security measures and best practices\r\nProtecting personal and sensitive data",
+    "order": 8
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 22,
+  "fields": {
+    "course": 2,
+    "title": "Future Trends in Computing",
+    "description": "Exploring emerging technologies such as AI, IoT, and quantum computing\r\nThe impact of computing advancements on society and industry\r\nPreparing for a career in the field of computer hardware and software",
+    "order": 9
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 23,
+  "fields": {
+    "course": 3,
+    "title": "Course Introduction",
+    "description": "Brief Introduction",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 24,
+  "fields": {
+    "course": 3,
+    "title": "Understanding EI",
+    "description": "Understanding Emotional Intelligence (EI) and its significance in personal and professional life.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 25,
+  "fields": {
+    "course": 3,
+    "title": "Benefits of EI",
+    "description": "Benefits of developing emotional intelligence for improved communication and decision-making.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 29,
+  "fields": {
+    "course": 5,
+    "title": "Emotion Regulation",
+    "description": "Techniques for managing and controlling emotions effectively.\r\nCoping mechanisms for stress and challenging situations.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 30,
+  "fields": {
+    "course": 5,
+    "title": "Goal Setting and Motivation",
+    "description": "Setting emotional and personal goals for self-improvement.\r\nFinding intrinsic motivation and maintaining resilience.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 31,
+  "fields": {
+    "course": 5,
+    "title": "Time Management and Work-Life Balance",
+    "description": "Balancing emotions and managing time to achieve work-life harmony.\r\nStrategies for avoiding burnout and maintaining well-being.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 32,
+  "fields": {
+    "course": 6,
+    "title": "Empathy and Understanding Others",
+    "description": "Developing empathy to understand the emotions and perspectives of others.\r\nActive listening and demonstrating genuine concern for others' emotions.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 33,
+  "fields": {
+    "course": 6,
+    "title": "Cultural Awareness and Diversity",
+    "description": "Recognizing and respecting emotional differences across cultures.\r\nNavigating diverse social environments with sensitivity.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 34,
+  "fields": {
+    "course": 7,
+    "title": "Communication and Conflict Resolution",
+    "description": "Effective communication techniques for expressing emotions clearly.\r\nStrategies for resolving conflicts constructively.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 35,
+  "fields": {
+    "course": 7,
+    "title": "Building Positive Relationships",
+    "description": "Strengthening interpersonal relationships through emotional intelligence.\r\nFostering trust and collaboration in personal and professional settings.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 36,
+  "fields": {
+    "course": 7,
+    "title": "Leadership and Emotional Intelligence",
+    "description": "The role of emotional intelligence in effective leadership.\r\nInspiring and motivating others through emotional intelligence.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 37,
+  "fields": {
+    "course": 9,
+    "title": "Course Introduction",
+    "description": "Overview of physics and its significance in understanding the universe.\r\nHistorical developments and major contributions of physicists.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 38,
+  "fields": {
+    "course": 10,
+    "title": "Kinematics",
+    "description": "Understanding motion, displacement, velocity, and acceleration.\r\nCalculating basic kinematic quantities and graphing motion.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 39,
+  "fields": {
+    "course": 10,
+    "title": "Forces and Newton's Laws",
+    "description": "Introduction to forces, Newton's three laws of motion, and their applications.\r\nAnalyzing forces acting on objects in equilibrium and motion.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 40,
+  "fields": {
+    "course": 10,
+    "title": "Energy and Work",
+    "description": "Different forms of energy, including kinetic and potential energy.\r\nThe concept of work and the work-energy theorem.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 41,
+  "fields": {
+    "course": 11,
+    "title": "Temperature and Heat",
+    "description": "Temperature scales and thermal equilibrium.\r\nHeat transfer mechanisms: conduction, convection, and radiation.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 42,
+  "fields": {
+    "course": 11,
+    "title": "Laws of Thermodynamics",
+    "description": "The First Law of Thermodynamics (conservation of energy).\r\nThe Second Law of Thermodynamics (entropy and heat flow).",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 43,
+  "fields": {
+    "course": 12,
+    "title": "Electric Charges and Fields",
+    "description": "Understanding electric charges, electric fields, and Coulomb's law.\r\nElectric potential and voltage.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 44,
+  "fields": {
+    "course": 12,
+    "title": "Electric Circuits",
+    "description": "Analyzing simple electric circuits and solving circuit problems.\r\nIntroduction to Ohm's law and Kirchhoff's laws.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 45,
+  "fields": {
+    "course": 12,
+    "title": "Magnetism and Electromagnetism",
+    "description": "Magnetic fields, magnetic forces, and the right-hand rule.\r\nElectromagnetic induction and applications.",
+    "order": 2
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 46,
+  "fields": {
+    "course": 13,
+    "title": "Wave Properties",
+    "description": "Understanding wave motion, wavelength, frequency, and amplitude.\r\nTypes of waves: mechanical and electromagnetic waves.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 47,
+  "fields": {
+    "course": 13,
+    "title": "Optics",
+    "description": "Reflection and refraction of light.\r\nLens and mirror properties, lens formula, and magnification.",
+    "order": 1
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 48,
+  "fields": {
+    "course": 14,
+    "title": "Special Theory of Relativity",
+    "description": "The postulates of special relativity and consequences.\r\nTime dilation and length contraction.",
+    "order": 0
+  }
+},
+{
+  "model": "course.lesson",
+  "pk": 49,
+  "fields": {
+    "course": 14,
+    "title": "Quantum Mechanics",
+    "description": "Introduction to quantum theory and the wave-particle duality.\r\nQuantum states, wave functions, and Heisenberg's uncertainty principle.",
+    "order": 1
+  }
+},
+{
+  "model": "course.content",
+  "pk": 1,
+  "fields": {
+    "lesson": 1,
+    "content_type": 9,
+    "object_id": 1,
+    "order": 0
+  }
+},
+{
+  "model": "course.content",
+  "pk": 2,
+  "fields": {
+    "lesson": 1,
+    "content_type": 8,
+    "object_id": 1,
+    "order": 1
+  }
+},
+{
+  "model": "course.content",
+  "pk": 3,
+  "fields": {
+    "lesson": 1,
+    "content_type": 12,
+    "object_id": 1,
+    "order": 2
+  }
+},
+{
+  "model": "course.content",
+  "pk": 4,
+  "fields": {
+    "lesson": 1,
+    "content_type": 11,
+    "object_id": 1,
+    "order": 3
+  }
+},
+{
+  "model": "course.text",
+  "pk": 1,
+  "fields": {
+    "mentor": 2,
+    "title": "Origins, Engines and All",
+    "created_at": "2023-07-27T12:56:07.185Z",
+    "updated_at": "2023-07-27T12:56:07.185Z",
+    "content": "Mechanical computers were early computational devices that used mechanical components to perform various mathematical and computational tasks. They laid the groundwork for the development of modern electronic computers. Here's a brief overview:\r\n\r\n1. Origins:\r\n   Mechanical computers have roots dating back to ancient times when various civilizations, like the Greeks and Chinese, designed mechanical devices to aid in calculations. However, significant progress was made during the 17th and 18th centuries.\r\n\r\n2. Charles Babbage's Analytical Engine:\r\n   One of the most influential figures in the development of mechanical computers was Charles Babbage, an English mathematician and inventor. In the 1820s and 1830s, he conceptualized and designed the \"Analytical Engine,\" which was intended to be a general-purpose mechanical computer capable of performing complex calculations and processing data through punched cards. Though it was never fully constructed during his lifetime, Babbage's design laid the foundation for programmable computers.\r\n\r\n3. Difference Engine:\r\n   Prior to the Analytical Engine, Babbage worked on the \"Difference Engine,\" a mechanical device designed to calculate polynomial functions. The Difference Engine No. 1, completed in 1822, was the first successful automatic mechanical calculator, capable of computing tables of polynomial differences.\r\n\r\n4. Pioneering Devices:\r\n   Other inventors and engineers contributed to the field of mechanical computing. For instance, in the mid-1800s, George Scheutz and his son Edvard built and improved upon Babbage's designs, leading to the creation of the \"Scheutzian calculation engine,\" which was used for various mathematical computations.\r\n\r\n5. Limitations:\r\n   Mechanical computers were impressive achievements for their time, but they had limitations. They were cumbersome, often requiring manual setup for each calculation, and prone to mechanical errors. Their complexity and size made them unsuitable for widespread adoption and practical use.\r\n\r\n6. Transition to Electronic Computers:\r\n   The development of electronic components, such as vacuum tubes and transistors in the 20th century, paved the way for the transition from mechanical to electronic computers. Electronic computers were faster, more reliable, and capable of handling more complex tasks, revolutionizing computation and setting the stage for the digital age.\r\n\r\nWhile mechanical computers are no longer in practical use, they represent an important phase in the evolution of computing technology, where inventors and visionaries laid the groundwork for the digital revolution that followed. Their designs and principles were the stepping stones upon which modern electronic computers were built, shaping the world of computing as we know it today."
+  }
+},
+{
+  "model": "course.file",
+  "pk": 1,
+  "fields": {
+    "mentor": 2,
+    "title": "Load Balancing",
+    "created_at": "2023-07-27T21:30:37.898Z",
+    "updated_at": "2023-07-27T21:30:37.898Z",
+    "file": "files/what-is-load-balancing.png"
+  }
+},
+{
+  "model": "course.image",
+  "pk": 1,
+  "fields": {
+    "mentor": 2,
+    "title": "LoaD balancing",
+    "created_at": "2023-07-27T21:31:24.008Z",
+    "updated_at": "2023-07-27T21:31:24.009Z",
+    "file": "images/what-is-load-balancing.png"
+  }
+},
+{
+  "model": "course.video",
+  "pk": 1,
+  "fields": {
+    "mentor": 2,
+    "title": "Babbage Engine",
+    "created_at": "2023-07-27T13:00:28.692Z",
+    "updated_at": "2023-07-27T13:00:28.692Z",
+    "url": "https://www.youtube.com/watch?v=XSkGY6LchJs"
+  }
+},
+{
+  "model": "course.assessment",
+  "pk": 1,
+  "fields": {
+    "course": 1,
+    "title": "History of Computers Assessment",
+    "description": "An introduction to the fascinating history of computers and their evolution.",
+    "created_at": "2023-07-28T14:15:40.511Z"
+  }
+},
+{
+  "model": "course.question",
+  "pk": 1,
+  "fields": {
+    "assessment": 1,
+    "text": "Who is considered the 'father of computing' for conceptualizing the first mechanical computer?\""
+  }
+},
+{
+  "model": "course.question",
+  "pk": 2,
+  "fields": {
+    "assessment": 1,
+    "text": "In which decade did the first electronic computers using vacuum tubes emerge?"
+  }
+},
+{
+  "model": "course.question",
+  "pk": 3,
+  "fields": {
+    "assessment": 1,
+    "text": "What is the name of the first successful electronic computer, used during World War II for code-breaking?"
+  }
+},
+{
+  "model": "course.question",
+  "pk": 4,
+  "fields": {
+    "assessment": 1,
+    "text": "The invention of the transistor in 1947 revolutionized computing. Where was it developed?"
+  }
+},
+{
+  "model": "course.question",
+  "pk": 5,
+  "fields": {
+    "assessment": 1,
+    "text": "Which computer language, developed in the mid-1950s, was one of the first high-level programming languages?"
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 1,
+  "fields": {
+    "question": 1,
+    "text": "Alan Turing",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 2,
+  "fields": {
+    "question": 1,
+    "text": "Charles Babbage",
+    "is_correct": true
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 3,
+  "fields": {
+    "question": 1,
+    "text": "John von Neumann",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 4,
+  "fields": {
+    "question": 1,
+    "text": "Ada Lovelace",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 5,
+  "fields": {
+    "question": 2,
+    "text": "1950s",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 6,
+  "fields": {
+    "question": 2,
+    "text": "1940s",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 7,
+  "fields": {
+    "question": 2,
+    "text": "1930s",
+    "is_correct": true
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 8,
+  "fields": {
+    "question": 2,
+    "text": "1960s",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 9,
+  "fields": {
+    "question": 3,
+    "text": "Colossus",
+    "is_correct": true
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 10,
+  "fields": {
+    "question": 3,
+    "text": "Mark 1",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 11,
+  "fields": {
+    "question": 3,
+    "text": "UNIVAC",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 12,
+  "fields": {
+    "question": 3,
+    "text": "ENIAC",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 13,
+  "fields": {
+    "question": 4,
+    "text": "IBM",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 14,
+  "fields": {
+    "question": 4,
+    "text": "Bell Labs",
+    "is_correct": true
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 15,
+  "fields": {
+    "question": 4,
+    "text": "Microsoft",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 16,
+  "fields": {
+    "question": 4,
+    "text": "Xerox PARC",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 17,
+  "fields": {
+    "question": 5,
+    "text": "C++",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 18,
+  "fields": {
+    "question": 5,
+    "text": "Assembly language",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 19,
+  "fields": {
+    "question": 5,
+    "text": "Fortran",
+    "is_correct": false
+  }
+},
+{
+  "model": "course.choice",
+  "pk": 20,
+  "fields": {
+    "question": 5,
+    "text": "COBOL",
+    "is_correct": true
   }
 }
 ]

@@ -1,0 +1,120 @@
+[
+{
+  "model": "accounts.user",
+  "pk": 1,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$0vYS69hZjDEABWuagKZRJC$73j0tuNlsKD7LUQ5VCW83WlnB0jtY+MHSsegXcys5MM=",
+    "last_login": "2023-07-28T10:25:09.061Z",
+    "is_superuser": true,
+    "email": "admin@liberlearn.com",
+    "username": "admin",
+    "role": "",
+    "first_name": "",
+    "last_name": "",
+    "is_active": true,
+    "is_staff": true,
+    "date_joined": "2023-07-27T07:41:53.682Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 2,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$YiFi9DSvotM0q0djQ63jyL$Flq/8bx6Pqk+UVz5I/ZbRS9ndb8cWzA/3r2qJwStHDQ=",
+    "last_login": "2023-07-27T16:43:54.421Z",
+    "is_superuser": false,
+    "email": "dmentor@liberlearn.com",
+    "username": "defaultmentor",
+    "role": "mentor",
+    "first_name": "Jide",
+    "last_name": "Brown",
+    "is_active": true,
+    "is_staff": true,
+    "date_joined": "2023-07-27T07:43:03Z",
+    "groups": [
+      1
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 3,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$sI40S5V6n5sODkjg99AORG$BVsgzmVOwuHjnAtAZGow6cjczeQIPEqpdqHrzyo+o+g=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "dstaff@liberlearn.com",
+    "username": "dstaff",
+    "role": "",
+    "first_name": "Grace",
+    "last_name": "Golden",
+    "is_active": true,
+    "is_staff": true,
+    "date_joined": "2023-07-27T07:43:49Z",
+    "groups": [
+      2
+    ],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 4,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$hKuJDarlocRryJZhsqFhNV$4POts1GRzjkubbtsep3aL1kelShP/EOaenUtH43tkCA=",
+    "last_login": "2023-07-27T21:35:05.903Z",
+    "is_superuser": false,
+    "email": "astudent@liberlearn.com",
+    "username": "firststudent",
+    "role": "student",
+    "first_name": "Raymond",
+    "last_name": "Kolade",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2023-07-27T07:44:41Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 5,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$yUp3uSAkKFNe5I6hRSMJc5$s0xaURXq95DY9YvKjECRtx4QNSm721/LUcPXlftL+U4=",
+    "last_login": null,
+    "is_superuser": false,
+    "email": "mentor1@liberlearn.com",
+    "username": "mentor1",
+    "role": "mentor",
+    "first_name": "Dupe",
+    "last_name": "James",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2023-07-27T08:02:55Z",
+    "groups": [],
+    "user_permissions": []
+  }
+},
+{
+  "model": "accounts.user",
+  "pk": 6,
+  "fields": {
+    "password": "pbkdf2_sha256$600000$DZjSUG27oiABmDDIMZCRXQ$u1nAgmXcQe9vkqnRed7zfe5rJWBLpz9auW9Gv3kUxHQ=",
+    "last_login": "2023-07-27T16:23:39.430Z",
+    "is_superuser": false,
+    "email": "dstudent@liberlearn.com",
+    "username": "student2",
+    "role": "student",
+    "first_name": "Terry",
+    "last_name": "Grow",
+    "is_active": true,
+    "is_staff": false,
+    "date_joined": "2023-07-27T16:20:46Z",
+    "groups": [],
+    "user_permissions": []
+  }
+}
+]
