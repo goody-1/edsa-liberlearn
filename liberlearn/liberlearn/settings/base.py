@@ -131,7 +131,7 @@ AUTHENTICATION_BACKENDS = [
 ]
 AUTH_USER_MODEL = "accounts.User"
 
-LOGIN_REDIRECT_URL = reverse_lazy("schema_api")
+LOGIN_REDIRECT_URL = reverse_lazy("admin:index")
 LOGOUT_REDIRECT_URL = reverse_lazy("schema_api")
 
 
