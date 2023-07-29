@@ -3,3 +3,5 @@ Notes.md
 db.sqlite3
 __pycache__/
 cred
+staticfiles
+accounts.json
