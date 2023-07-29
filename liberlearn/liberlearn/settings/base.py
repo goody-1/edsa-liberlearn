@@ -131,8 +131,8 @@ AUTHENTICATION_BACKENDS = [
 ]
 AUTH_USER_MODEL = "accounts.User"
 
-LOGIN_REDIRECT_URL = reverse_lazy("student_course_list")
-LOGOUT_REDIRECT_URL = reverse_lazy("student_course_list")
+LOGIN_REDIRECT_URL = reverse_lazy("schema_api")
+LOGOUT_REDIRECT_URL = reverse_lazy("schema_api")
 
 
 REST_FRAMEWORK = {
