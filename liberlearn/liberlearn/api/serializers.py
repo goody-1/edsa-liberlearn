@@ -50,7 +50,7 @@ subject title in the database"
         instance.save()
         return instance
 
-    def get_courses(self, subject):
+    def get_courses(self, subject: Subject):
         courses = Course.objects.filter(subject=subject)
         serializer = CourseListSerializer(
             courses, many=True, context=self.context
@@ -87,14 +87,14 @@ class CourseListSerializer(HyperlinkedModelSerializer):
             "url": {"view_name": "course-detail", "lookup_field": "pk"}
         }
 
-    def get_lessons(self, course):
+    def get_lessons(self, course: Course):
         lessons = Lesson.objects.filter(course=course)
         serializer = LessonWithContentsSerializer(
             lessons, many=True, context=self.context
         )
         return serializer.data
 
-    def get_number_of_students(self, course):
+    def get_number_of_students(self, course: Course):
         number_of_students = len(course.students.all())
         return number_of_students
 
