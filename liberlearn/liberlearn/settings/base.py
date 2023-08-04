@@ -59,8 +59,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://127.0.0.1",
-    "localhost:3000",  # Example: Allow requests from your React app
-    "https://liberlearn.up.railway.app",  # Add more origins as needed
+    "https://liberlearn.up.railway.app",
 ]
 
 ROOT_URLCONF = "liberlearn.urls"
