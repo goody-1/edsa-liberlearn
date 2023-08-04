@@ -17,7 +17,7 @@ class Subject(models.Model):
     slug = models.SlugField(max_length=200, unique=True)
     info = models.TextField(default="Subject Information Should Be Here")
     image_link = models.CharField(
-        max_length=200, default="https://i.imgur.com/yI5nb9M.png"
+        max_length=200, default="https://i.imgur.com/Z5DoxmH.png"
     )
 
     class Meta:
