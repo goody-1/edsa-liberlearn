@@ -57,10 +57,14 @@ MIDDLEWARE = [
 ]
 
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost",
-    "http://127.0.0.1",
+    "http://localhost:3000",
+    "https://localhost:3000",
     "https://liberlearn.up.railway.app",
+    "https://liberlearn-backend.up.railway.app",
+    "http://liberlearn.up.railway.app",
+    "http://liberlearn-backend.up.railway.app",
 ]
+# CORS_ALLOW_HEADERS = ["*"]
 
 ROOT_URLCONF = "liberlearn.urls"
 
