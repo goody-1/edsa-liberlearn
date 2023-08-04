@@ -13,8 +13,12 @@ DEFAULT_MENTOR_ID = 2
 class Subject(models.Model):
     """The Subject Table, has one or more courses"""
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
+    info = models.TextField(default="Subject Information Should Be Here")
+    image_link = models.CharField(
+        max_length=200, default="https://i.imgur.com/yI5nb9M.png"
+    )
 
     class Meta:
         ordering = ["title"]

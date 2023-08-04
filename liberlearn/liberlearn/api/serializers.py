@@ -22,10 +22,20 @@ from ..course.models import (
 
 class SubjectSerializer(HyperlinkedModelSerializer):
     courses = SerializerMethodField()
+    number_of_courses = SerializerMethodField()
 
     class Meta:
         model = Subject
-        fields = ("id", "url", "title", "slug", "courses")
+        fields = (
+            "id",
+            "url",
+            "title",
+            "info",
+            "image_link",
+            "slug",
+            "number_of_courses",
+            "courses",
+        )
         extra_kwargs = {
             "url": {"view_name": "subject-detail", "lookup_field": "pk"}
         }
@@ -56,6 +66,10 @@ subject title in the database"
             courses, many=True, context=self.context
         )
         return serializer.data
+
+    def get_number_of_courses(self, subject: Subject):
+        number_of_courses = len(subject.courses.all())
+        return number_of_courses
 
 
 class CourseListSerializer(HyperlinkedModelSerializer):
