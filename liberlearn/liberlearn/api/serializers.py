@@ -142,10 +142,16 @@ class ItemRelatedField(RelatedField):
 
 class ContentSerializer(ModelSerializer):
     item = ItemRelatedField(read_only=True)
+    content_type = SerializerMethodField()
 
     class Meta:
         model = Content
-        fields = ["order", "item"]
+        fields = ["id", "order", "item", "content_type"]
+
+    def get_content_type(self, content: Content):
+        hld = str(type(content.item)).split(".")[-1]
+        content_type = hld[:-2]
+        return content_type
 
 
 class LessonWithContentsSerializer(ModelSerializer):
@@ -153,7 +159,7 @@ class LessonWithContentsSerializer(ModelSerializer):
 
     class Meta:
         model = Lesson
-        fields = ["order", "title", "description", "contents"]
+        fields = ["id", "order", "title", "description", "contents"]
 
 
 class CourseWithContentsSerializer(ModelSerializer):
