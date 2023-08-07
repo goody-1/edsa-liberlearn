@@ -32,6 +32,7 @@ class SubjectSerializer(HyperlinkedModelSerializer):
             "title",
             "info",
             "image_link",
+            "intro_video",
             "slug",
             "number_of_courses",
             "courses",
