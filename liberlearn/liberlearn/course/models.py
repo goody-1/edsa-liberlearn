@@ -19,6 +19,9 @@ class Subject(models.Model):
     image_link = models.CharField(
         max_length=200, default="https://i.imgur.com/Z5DoxmH.png"
     )
+    intro_video = models.CharField(
+        max_length=400, default="https://www.youtube.com/embed/9nkR2LLPiYo"
+    )
 
     class Meta:
         ordering = ["title"]
