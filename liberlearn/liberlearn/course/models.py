@@ -124,15 +124,15 @@ class Text(ItemBase):
 
 
 class File(ItemBase):
-    file = models.FileField(upload_to="files")
+    file = models.CharField(max_length=200)
 
 
 class Image(ItemBase):
-    file = models.FileField(upload_to="images")
+    file = models.CharField(max_length=200)
 
 
 class Video(ItemBase):
-    url = models.URLField()
+    url = models.CharField(max_length=200)
 
 
 class Assessment(models.Model):
