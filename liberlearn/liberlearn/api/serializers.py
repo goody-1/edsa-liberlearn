@@ -145,12 +145,12 @@ class ItemRelatedField(RelatedField):
 
 
 class ContentSerializer(ModelSerializer):
-    item_url = SerializerMethodField()
+    item = SerializerMethodField()
     content_type = SerializerMethodField()
 
     class Meta:
         model = Content
-        fields = ["id", "order", "item_url", "content_type"]
+        fields = ["id", "order", "item", "content_type"]
 
     def get_content_type(self, content: Content):
         hld = str(type(content.item)).split(".")[-1]
