@@ -157,7 +157,7 @@ class ContentSerializer(ModelSerializer):
         content_type = hld[:-2]
         return content_type
 
-    def get_item_url(self, content):
+    def get_item(self, content):
         # Determine the item's type and get the URL dynamically
         item = content.item
         if isinstance(item, Text):
