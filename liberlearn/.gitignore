@@ -5,3 +5,4 @@ __pycache__/
 cred
 staticfiles
 accounts.json
+frontend

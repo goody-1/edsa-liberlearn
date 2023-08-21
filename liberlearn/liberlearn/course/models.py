@@ -1,7 +1,8 @@
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.db import models
-from django.template.loader import render_to_string
+
+# from django.template.loader import render_to_string
 
 from liberlearn.accounts.models import User
 
@@ -113,26 +114,38 @@ class ItemBase(models.Model):
     def __str__(self):
         return self.title
 
-    def render(self):
-        return render_to_string(
-            f"course/content/{self._meta.model_name}.html", {"item": self}
-        )
+    # def render(self):
+    #     return render_to_string(
+    #         f"course/content/{self._meta.model_name}.html", {"item": self}
+    #     )
 
 
 class Text(ItemBase):
     content = models.TextField()
 
+    def get_item_url(self):
+        return self.content
+
 
 class File(ItemBase):
     file = models.CharField(max_length=200)
 
+    def get_item_url(self):
+        return self.file
+
 
 class Image(ItemBase):
-    file = models.CharField(max_length=200)
+    image = models.CharField(max_length=200)
+
+    def get_item_url(self):
+        return self.image
 
 
 class Video(ItemBase):
     url = models.CharField(max_length=200)
+
+    def get_item_url(self):
+        return self.url
 
 
 class Assessment(models.Model):

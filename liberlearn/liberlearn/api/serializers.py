@@ -17,6 +17,10 @@ from ..course.models import (
     Lesson,
     Question,
     Subject,
+    Text,
+    Video,
+    Image,
+    File,
 )
 
 
@@ -141,17 +145,31 @@ class ItemRelatedField(RelatedField):
 
 
 class ContentSerializer(ModelSerializer):
-    item = ItemRelatedField(read_only=True)
+    item_url = SerializerMethodField()
     content_type = SerializerMethodField()
 
     class Meta:
         model = Content
-        fields = ["id", "order", "item", "content_type"]
+        fields = ["id", "order", "item_url", "content_type"]
 
     def get_content_type(self, content: Content):
         hld = str(type(content.item)).split(".")[-1]
         content_type = hld[:-2]
         return content_type
+
+    def get_item_url(self, content):
+        # Determine the item's type and get the URL dynamically
+        item = content.item
+        if isinstance(item, Text):
+            return item.get_item_url()
+        elif isinstance(item, Image):
+            return item.get_item_url()
+        elif isinstance(item, Video):
+            return item.get_item_url()
+        elif isinstance(item, File):
+            return item.get_item_url()
+        else:
+            return None
 
 
 class LessonWithContentsSerializer(ModelSerializer):
