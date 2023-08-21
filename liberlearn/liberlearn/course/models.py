@@ -83,15 +83,36 @@ class Content(models.Model):
         ContentType,
         on_delete=models.CASCADE,
         limit_choices_to={
-            "model_in": ("text", "video", "image", "file"),
+            "model__in": ("text", "video", "image", "file"),
         },
     )
     object_id = models.PositiveIntegerField()
     item = GenericForeignKey("content_type", "object_id")
     order = OrderField(blank=True, for_fields=["lesson"])
+    data = models.CharField(
+        blank=True, null=True, editable=True, max_length=200
+    )
+    text = models.TextField(blank=True, null=True, editable=True)
 
     def __str__(self):
         return f"{self.content_type}"
+
+    def save(self, *args, **kwargs):
+        if self.content_type.model == "text":
+            self.text = self.item.content
+            self.data = None
+        elif self.content_type.model == "video":
+            self.data = self.item.url
+            print(self.data)
+            self.text = None
+        elif self.content_type.model == "image":
+            self.data = self.item.image
+            self.text = None
+        elif self.content_type.model == "file":
+            self.data = self.item.file
+            self.text = None
+
+        super().save(*args, **kwargs)
 
     class Meta:
         ordering = ["order"]
@@ -103,6 +124,9 @@ class ItemBase(models.Model):
         related_name="%(class)s_related",
         on_delete=models.SET_DEFAULT,
         default=DEFAULT_MENTOR_ID,
+    )
+    lesson_content = models.ForeignKey(
+        Content, related_name="%(class)s_content", on_delete=models.CASCADE
     )
     title = models.CharField(max_length=250)
     created_at = models.DateTimeField(auto_now_add=True)
