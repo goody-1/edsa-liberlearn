@@ -86,31 +86,18 @@ class Content(models.Model):
             "model__in": ("text", "video", "image", "file"),
         },
     )
-    object_id = models.PositiveIntegerField()
+    object_id = models.PositiveIntegerField(editable=False)
     item = GenericForeignKey("content_type", "object_id")
     order = OrderField(blank=True, for_fields=["lesson"])
-    data = models.CharField(
-        blank=True, null=True, editable=True, max_length=200
-    )
-    text = models.TextField(blank=True, null=True, editable=True)
+    data = models.TextField(blank=False, null=False, editable=True)
 
     def __str__(self):
         return f"{self.content_type}"
 
     def save(self, *args, **kwargs):
-        if self.content_type.model == "text":
-            self.text = self.item.content
-            self.data = None
-        elif self.content_type.model == "video":
-            self.data = self.item.url
-            print(self.data)
-            self.text = None
-        elif self.content_type.model == "image":
-            self.data = self.item.image
-            self.text = None
-        elif self.content_type.model == "file":
-            self.data = self.item.file
-            self.text = None
+        self.object_id = self.lesson.id
+        if self.item:
+            self.data = self.item.content
 
         super().save(*args, **kwargs)
 
@@ -138,38 +125,21 @@ class ItemBase(models.Model):
     def __str__(self):
         return self.title
 
-    # def render(self):
-    #     return render_to_string(
-    #         f"course/content/{self._meta.model_name}.html", {"item": self}
-    #     )
-
 
 class Text(ItemBase):
     content = models.TextField()
-
-    def get_item_url(self):
-        return self.content
 
 
 class File(ItemBase):
     file = models.CharField(max_length=200)
 
-    def get_item_url(self):
-        return self.file
-
 
 class Image(ItemBase):
     image = models.CharField(max_length=200)
 
-    def get_item_url(self):
-        return self.image
-
 
 class Video(ItemBase):
     url = models.CharField(max_length=200)
-
-    def get_item_url(self):
-        return self.url
 
 
 class Assessment(models.Model):

@@ -65,3 +65,6 @@ class AssessmentAdmin(NestedModelAdmin):
     list_filter = ["created_at", "course"]
     search_fields = ["title", "description"]
     inlines = [QuestionInline]
+
+
+admin.site.register(Content)
